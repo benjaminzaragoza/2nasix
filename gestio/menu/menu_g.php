@@ -45,6 +45,11 @@ var TREE_ITEMS = [
 						['Alta Nou Autor','<?=$ruta?>gestio/controladors/c_autor.php?accio=a'],
 						["Llistat d'Autors",'<?=$ruta?>gestio/controladors/c_autor.php?accio=l']
 				
+			],
+                        ["Gestió llibres",null,
+						['Alta Nou llibre','<?=$ruta?>gestio/controladors/c_llibre.php?accio=a'],
+						["Llistat de llibres",'<?=$ruta?>gestio/controladors/c_llibre.php?accio=l']
+				
 			]
 		]<!--Tanca menu gestio-->
 ];
