@@ -2,12 +2,13 @@
     $ruta="../../";
     include $ruta."gestio/classes/cls_includes.php";
     
-    //echo "sdfjhsdjfhsd=".$_GET['idlli'];
-    $idlli = $_GET['idlli'];
-    $lli = new llibre();
-    $lli->inicialitza($idlli);
+    //echo "sdfjhsdjfhsd=".$_GET['idllib'];
+    $idllib = $_GET['idllib'];
+    $llib = new llibre();
+    $llib->inicialitza($idllib);
     
-    
+    $gen = new general();
+
 ?>
 <html>
 <head>
@@ -41,6 +42,7 @@
 						document.formulari.f_submit.value='Modificar';
 						document.formulari.llibre.value=document.formulari.h_llibre.value;
 						document.formulari.llibre.disabled=true;
+
 					}//tanca l'else
 			}//tanca l'else		
 		}//tanca l'else
@@ -64,9 +66,9 @@
 </head>
 
 <body>
-<form name="formulari" action="<?=$ruta?>gestio/controladors/c_llibre.php?accio=v&idlli=<?=$idlli?>" method="post" enctype="multipart/form-data">
+<form name="formulari" action="<?=$ruta?>gestio/controladors/c_llibre.php?accio=v&idllib=<?=$idllib?>" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="h_accio" id="h_accio" value="">
-        <input type="hidden" name="h_llibre" id="h_llibre" value="<?=$lli->get_lli_llibre()?>">
+        <input type="hidden" name="h_llibre" id="h_llibre" value="<?=$llib->get_llib_llibre()?>">
 	<table width="100%">
 		<tr>
 			<td colspan="7" class="sub_titol">Informaci&oacute; de l' llibre</td>
@@ -74,27 +76,44 @@
 		<tr>
 			<td width="3">&nbsp;</td>
 			<td width="115" class="etiqueta">Identificador</td>
-			<td width="126"><input name="id" type="text" disabled class="input" value="<?=$lli->get_lli_idllibre()?>">			</td>
+			<td width="126"><input name="id" type="text" disabled class="input" value="<?=$llib->get_llib_idllibre()?>"></td>
 			<td width="113">&nbsp;</td>
 			<td width="293">&nbsp;		  </td>			
 		    <td width="94" align="center">&nbsp;</td>
 		</tr>
 		<tr>
 		  <td>&nbsp;</td>
+		  <td class="etiqueta">Llibre</td>
+		  <td colspan="4"><input name="llibre" type="text" class="input" id="llibre" value="<?=$llib->get_llib_llibre()?>" size="75">
+	      </td>
+		</tr>
+                <tr>
+		  <td>&nbsp;</td>
 		  <td class="etiqueta">Autor</td>
-		  <td colspan="4"><input name="llibre" type="text" class="input" id="llibre" value="<?=$lli->get_lli_llibre()?>" size="75">
+                  <td>
+                  <select name="autor" size=1> <option selected value="selected"> Tria un autor </option>
+                            <?php
+                            $items=$gen->llistat_autors();
+                            foreach($items as $it){
+                            $aut= unserialize($it);
+                            ?>
+                      <option value="<?=$aut->get_aut_idautor()?>" <?php if ($aut->get_aut_idautor()==$llib->get_llib_idautor()) echo "selected"; ?>><?=$aut->get_aut_autor()?></option>
+                            <?php
+                            }
+                            ?>
+                  </select>
 	      </td>
 		</tr>
 	</table>
 	<table width="100%">
 		<tr>
-		  	<td colspan="3"  class="sub_titol">Opciones de l' llibre</td>
+		  	<td colspan="3"  class="sub_titol">Opciones del llibre</td>
 	    </tr>
 		<tr>
 		  <td width="1%">&nbsp;</td>
 		  <td align="right" class="etiqueta">
-		    <input type="button" name="f_submit" value="<?=$lli->textSubmit()?>" class="input" onClick="javascript:submit_form()">
-		    <input type="button" name="f_delete" value="<?=$lli->textDelete()?>" class="input" onClick="javascript:delete_form()">
+		    <input type="button" name="f_submit" value="<?=$llib->textSubmit()?>" class="input" onClick="javascript:submit_form()">
+		    <input type="button" name="f_delete" value="<?=$llib->textDelete()?>" class="input" onClick="javascript:delete_form()">
 		  </td>submit
 		  <td width="1%">&nbsp;</td>submit
 	  </tr>			

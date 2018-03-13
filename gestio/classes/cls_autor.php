@@ -7,17 +7,17 @@ class autor extends connexio{
 			
 		// funcio creadora
 		function autor($ruta="../../") {
-			parent::connexio($ruta); //crea instancia de la classe pare  per tenir tots els métodes per herència
+			parent::connexio($ruta); //crea instancia de la classe pare  per tenir tots els mï¿½todes per herï¿½ncia
 		}
 		
 		// funcio d'inicialitzacio 		
 		function inicialitza($id){
 			$this->aut_idautor=$id;			
-			if ($this->aut_idautor==0) {//si és 0 vol dir que es crea una nova instància i per tant cal inicialitzar els atributs	
+			if ($this->aut_idautor==0) {//si ï¿½s 0 vol dir que es crea una nova instï¿½ncia i per tant cal inicialitzar els atributs	
 				$this->aut_autor="";
 			}
 			else {
-				// sino és 0 vol dir que volem consultar un element que ja tenim en la bd
+				// sino ï¿½s 0 vol dir que volem consultar un element que ja tenim en la bd
 				$sql="SELECT AUTORS.AUT_IDAUTOR, AUTORS.AUT_AUTOR ".
 					"FROM AUTORS WHERE (((AUTORS.AUT_IDAUTOR)=".$id."))";
 				$rs=$this->DB_Select($sql);
@@ -81,6 +81,18 @@ class autor extends connexio{
 			$this->aut_idautor=$rs_id['AUT_IDAUTOR'];
 			return $this->aut_idautor;
 		}
+                function llistat_llibres(){
+                        $sql="SELECT LLIB_IDLLIBRE,LLIB_LLIBRE FROM LLIBRES WHERE LLIB_IDAUTOR=".$this->aut_idautor;
+                        $rs=$this->DB_Select($sql);
+                        $i=1;
+                while ($rs_f=$this->DB_Fetch($rs)){
+                        $llib=new llibre();
+                        $llib->inicialitza($rs_f['LLIB_IDLLIBRE']);
+                        $items[$i]=serialize($llib);
+                        $i++;
+                }
+                return $items;
+                }
 		
 		
 }

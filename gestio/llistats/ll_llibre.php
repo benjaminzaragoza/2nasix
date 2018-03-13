@@ -1,7 +1,8 @@
 <?php
-$ruta="../../";
-include $ruta."gestio/classes/cls_includes.php";
 
+$ruta="../../";
+
+include$ruta."gestio/classes/cls_includes.php";
 $gen = new general();
 ?>
 
@@ -21,28 +22,34 @@ $gen = new general();
 <body>
 <table width="100%" >
   <tr>
-    <td colspan="3" class="sub_titol">Llistat d'Llibres</td>
+    <td colspan="4" class="titol">Llistat de llibres</td>
   </tr>
   <tr>
-    <td colspan="3" align="right">
+    <td colspan="4" align="right">
   </tr>
   <tr>
-    <td width="2%">&nbsp;</td>
-    <td colspan="2" class="etiqueta">Llibres</td>
+    <td colspan="3" class="sub_titol">Llibre</td>
+    <td colspan="3" class="sub_titol">Autor</td>
   </tr>
-<?php
-$items =$gen->llistat_llibre();
-foreach($items as $it){
-    $lli= unserialize($it);
-?>
+   
+
+  <?php
+  $items=$gen->llistat_llibres();
+  foreach($items as $it){
+      $llib= unserialize($it);
+      $retorn= $gen->obtenir_autor($llib->get_llib_idautor());
+  ?>
   <tr>
-    <td></td>
-    <td class="<?=$class?>"><?=$lli->get_lli_llibre()?>
-       
-    <td width="8%" colspan="-3" align="right"  class="scr_subTitol">
-      <input name="accio_c" type="button" id="accio_c" value="[consultar]" maxlength="255" onClick="javascript:consultar_document('<?=$ruta?>gestio/controladors/c_llibre.php?accio=c&idlli=<?=$lli->get_lli_idllibre()?>')" class="input">    </td>
+      <td></td>
+    <td class="<?=$class?>"><?=$llib->get_llib_llibre()?></td>
+    <td width="8%" colspan="-1" align="right"  class="scr_subTitol"></td>
+     <td class="<?=$class?>"><?=$retorn?></td>
+    <td width="8%" colspan="-1" align="left"  class="scr_subTitol">
+      <input name="accio_c" type="button" id="accio_c" value="[consultar]" maxlength="255" onClick="javascript:consultar_document('<?=$ruta?>gestio/controladors/c_llibre.php?accio=c&idllib=<?=$llib->get_llib_idllibre()?>')" class="input">    </td>
   </tr>
- <?php
-}
- ?>
-  </table>
+  <?php
+  }
+  ?>
+  </table>aut_idllibre
+</body>
+</html>

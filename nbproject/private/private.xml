@@ -5,10 +5,8 @@
         <group>
             <file>file:/var/www/html/pt3/gestio/classes/cls_general.php</file>
             <file>file:/var/www/html/pt3/gestio/vistes/v_autor.php</file>
-            <file>file:/var/www/html/pt3/gestio/classes/cls_autor.php</file>
             <file>file:/var/www/html/pt3/gestio/classes/cls_connexio.php</file>
             <file>file:/var/www/html/pt3/gestio/llistats/ll_autor.php</file>
-            <file>file:/var/www/html/pt3/gestio/vistes/v_inicial.php</file>
             <file>file:/var/www/html/pt3/gestio/controladors/c_autor.php</file>
             <file>file:/var/www/html/pt3/gestio/menu/menu_g.php</file>
         </group>

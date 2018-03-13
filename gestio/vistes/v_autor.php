@@ -8,6 +8,7 @@
     $aut->inicialitza($idaut);
     
     
+
 ?>
 <html>
 <head>
@@ -41,6 +42,7 @@
 						document.formulari.f_submit.value='Modificar';
 						document.formulari.autor.value=document.formulari.h_autor.value;
 						document.formulari.autor.disabled=true;
+
 					}//tanca l'else
 			}//tanca l'else		
 		}//tanca l'else
