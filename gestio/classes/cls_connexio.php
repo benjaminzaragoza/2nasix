@@ -9,7 +9,7 @@ class connexio{
     function connexio ($ruta="../../"){
         $this->host="localhost";
         $this->db="pt3";
-        $this->user="alumne";
+        $this->user="root";
         $this->passwd="alumne";
     }
     
@@ -72,6 +72,5 @@ class connexio{
     
     
 }
-
 ?>
 
